@@ -30,12 +30,13 @@ ARIMATTS_PATH=`pwd`
 
 
 #Dependies
-sudo apt-get install flex libncurses5-dev wget festival libx11-dev perl build-essential g++-4.7 csh gawk bc sox tcsh default-jre lame alsa aplay -y
+sudo apt-get install flex libncurses5-dev wget festival libx11-dev perl build-essential g++-4.7 csh gawk bc sox tcsh default-jre lame alsa -y
 sudo ln -s /lib/libncurses.so.5 /lib/libcurses.so
 sudo ln -s /usr/lib/libstdc++.so.6 /lib/libstdc++.so
 
 #Tools Required
 cd speech_tools
+chmod +x ./configure
 ./configure
 make info
 make
@@ -43,6 +44,7 @@ export ESTDIR=`pwd`
 cd ..
 
 cd festvox
+chmod +x ./configure
 ./configure
 make info
 make
@@ -50,6 +52,7 @@ export FESTVOXDIR=`pwd`
 cd ..
 
 cd festival
+chmod +x ./configure
 ./configure
 make info
 make
@@ -62,6 +65,7 @@ sudo ln -s $ARIMATTS_PATH/festival/bin/festival /usr/bin/festival
 cd htk
 
 patch -p1 -d . < HTS-2.2_for_HTK-3.4.1.patch
+chmod +x ./configure
 ./configure
 make
 sudo make install
@@ -71,6 +75,7 @@ sudo make hdecode install-hdecode
 cd ..
 
 cd hts_engine_api
+chmod +x ./configure
 ./configure
 make
 sudo make install
@@ -79,6 +84,7 @@ cd ..
 
 
 cd sptk
+chmod +x ./configure
 ./configure
 make
 sudo make install
@@ -98,7 +104,7 @@ cd $ARIMATTS_PATH
 
 #Voice & Language Data
 cd tamil
-
+chmod +x ./configure
 ./configure --with-fest-search-path=/usr/share/doc/festival/examples --with-sptk-search-path=$ARIMATTS_PATH/sptk/bin/ --with-hts-search-path=$ARIMATTS_PATH/htk/bin/ --with-hts-engine-search-path=$ARIMATTS_PATH/hts_engine_api/bin/
 
 sudo mv /usr/share/festival/radio_phones.scm /usr/share/festival/radio_phones.scm-old
